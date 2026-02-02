@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JS2 Solutions - Expertos en Ciberseguridad y Networking</title>
+      <style>
+                * {
+                              margin: 0;
+                              padding: 0;
+                              box-sizing: border-box;
+                }
+
+                body {
+                              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                              line-height: 1.6;
+                              color: #333;
+                }
+
+                /* Navegación */
+                nav {
+                              background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+                              padding: 1rem 0;
+                              position: sticky;
+                              top: 0;
+                              z-index: 1000;
+                              box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                }
+
+                nav .container {
+                              max-width: 1200px;
+                              margin: 0 auto;
+                              padding: 0 20px;
+                              display: flex;
+                              justify-content: space-between;
+                              align-items: center;
+                }
+
+                nav .logo {
+                              color: white;
+                              font-size: 1.5rem;
+                              font-weight: bold;
+                              text-decoration: none;
+                }
+
+                nav ul {
+                              display: flex;
+                              list-style: none;
+                              gap: 2rem;
+                }
+
+                nav a {
+                              color: white;
+                              text-decoration: none;
+                              transition: color 0.3s;
+                }
+
+                nav a:hover {
+                              color: #64d8ff;
+                }
+
+                /* Hero Section */
+                .hero {
+                              background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+                              color: white;
+                              padding: 6rem 20px;
+                              text-align: center;
+                }
+
+                .hero .container {
+                              max-width: 1200px;
+                              margin: 0 auto;
+                }
+
+                .hero h1 {
+                              font-size: 3rem;
+                              margin-bottom: 1rem;
+                              font-weight: bold;
+                }
+
+                .hero p {
+                              font-size: 1.3rem;
+                              margin-bottom: 2rem;
+                              opacity: 0.95;
+                }
+
+                .hero .btn {
+                              display: inline-block;
+                              padding: 0.8rem 2rem;
+                              background: #ffa500;
+                              color: white;
+                              text-decoration: none;
+                              border-radius: 5px;
+                              transition: background 0.3s;
+                              font-weight: bold;
+                }
+
+                .hero .btn:hover {
+                              background: #ff8c00;
+                }
+
+                /* Contenedor General */
+                .container {
+                              max-width: 1200px;
+                              margin: 0 auto;
+                              padding: 0 20px;
+                }
+
+                /* Secciones */
+                section {
+                              padding: 4rem 20px;
+                }
+
+                section h2 {
+                              font-size: 2.5rem;
+                              margin-bottom: 3rem;
+                              text-align: center;
+                              color: #1e3c72;
+                              position: relative;
+                              padding-bottom: 1rem;
+                }
+
+                section h2:after {
+                              content: '';
+                              position: absolute;
+                              bottom: 0;
+                              left: 50%;
+                              transform: translateX(-50%);
+                              width: 80px;
+                              height: 4px;
+                              background: #ffa500;
+                }
+
+                /* Sección Acerca de */
+                .about {
+                              background: #f8f9fa;
+                }
+
+                .about .content {
+                              display: grid;
+                              grid-template-columns: 1fr 1fr;
+                              gap: 3rem;
+                              align-items: center;
+                }
+
+                .about-text h3 {
+                              font-size: 1.8rem;
+                              color: #1e3c72;
+                              margin-bottom: 1.5rem;
+                }
+
+                .about-text p {
+                              margin-bottom: 1rem;
+                              font-size: 1.05rem;
+                              line-height: 1.8;
+                }
+
+                .about-icon {
+                              font-size: 5rem;
+                              text-align: center;
+                              color: #2a5298;
+                }
+
+                /* Sección Servicios */
+                .services {
+                              background: white;
+                }
+
+                .services-grid {
+                              display: grid;
+                              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                              gap: 2rem;
+                }
+
+                .service-card {
+                              background: #f8f9fa;
+                              padding: 2rem;
+                              border-radius: 8px;
+                              text-align: center;
+                              transition: transform 0.3s, box-shadow 0.3s;
+                              border-top: 4px solid #ffa500;
+                }
+
+                .service-card:hover {
+                              transform: translateY(-5px);
+                              box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                }
+
+                .service-card .icon {
+                              font-size: 3rem;
+                              margin-bottom: 1rem;
+                }
+
+                .service-card h3 {
+                              color: #1e3c72;
+                              margin-bottom: 1rem;
+                              font-size: 1.3rem;
+                }
+
+                .service-card p {
+                              color: #666;
+                              font-size: 0.95rem;
+                }
+
+                /* Sección Especialidades */
+                .specialties {
+                              background: #f8f9fa;
+                }
+
+                .specialties-grid {
+                              display: grid;
+                              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                              gap: 2rem;
+                }
+
+                .specialty-item {
+                              background: white;
+                              padding: 1.5rem;
+                              border-radius: 8px;
+                              text-align: center;
+                              box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                }
+
+                .specialty-item .badge {
+                              display: inline-block;
+                              background: #1e3c72;
+                              color: white;
+                              padding: 0.5rem 1.5rem;
+                              border-radius: 20px;
+                              font-weight: bold;
+                              font-size: 0.9rem;
+                }
+
+                /* Sección Contacto */
+                .contact {
+                              background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+                              color: white;
+                }
+
+                .contact h2 {
+                              color: white;
+                }
+
+                .contact h2:after {
+                              background: #ffa500;
+                }
+
+                .contact-content {
+                              display: grid;
+                              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                              gap: 3rem;
+                              margin-bottom: 3rem;
+                }
+
+                .contact-item {
+                              text-align: center;
+                }
+
+                .contact-item .icon {
+                              font-size: 2.5rem;
+                              margin-bottom: 1rem;
+                }
+
+                .contact-item h3 {
+                              margin-bottom: 0.5rem;
+                }
+
+                .contact-item p {
+                              opacity: 0.9;
+                }
+
+                .contact-form {
+                              background: rgba(255,255,255,0.1);
+                              padding: 2rem;
+                              border-radius: 8px;
+                              max-width: 600px;
+                              margin: 0 auto;
+                }
+
+                .form-group {
+                              margin-bottom: 1.5rem;
+                }
+
+                .form-group label {
+                              display: block;
+                              margin-bottom: 0.5rem;
+                              font-weight: bold;
+                }
+
+                .form-group input,
+                .form-group textarea {
+                              width: 100%;
+                              padding: 0.8rem;
+                              border: none;
+                              border-radius: 4px;
+                              font-size: 1rem;
+                              font-family: inherit;
+                }
+
+                .form-group textarea {
+                              resize: vertical;
+                              min-height: 120px;
+                }
+
+                .form-group button {
+                              width: 100%;
+                              padding: 1rem;
+                              background: #ffa500;
+                              color: white;
+                              border: none;
+                              border-radius: 4px;
+                              font-size: 1rem;
+                              font-weight: bold;
+                              cursor: pointer;
+                              transition: background 0.3s;
+                }
+
+                .form-group button:hover {
+                              background: #ff8c00;
+                }
+
+                /* Footer */
+                footer {
+                              background: #1a2a3a;
+                              color: white;
+                              text-align: center;
+                              padding: 2rem 20px;
+                }
+
+                footer p {
+                              margin-bottom: 0.5rem;
+                }
+
+                footer .social-links {
+                              margin-top: 1.5rem;
+                }
+
+                footer .social-links a {
+                              display: inline-block;
+                              width: 40px;
+                              height: 40px;
+                              background: #2a5298;
+                              border-radius: 50%;
+                              line-height: 40px;
+                              color: white;
+                              text-decoration: none;
+                              margin: 0 0.5rem;
+                              transition: background 0.3s;
+                }
+
+                footer .social-links a:hover {
+                              background: #ffa500;
+                }
+
+                /* Responsive */
+                @media (max-width: 768px) {
+                              nav ul {
+                                                gap: 1rem;
+                              }
+
+                              .hero h1 {
+                                                font-size: 2rem;
+                              }
+
+                              .hero p {
+                                                font-size: 1rem;
+                              }
+
+                              section h2 {
+                                                font-size: 1.8rem;
+                              }
+
+                              .about .content {
+                                                grid-template-columns: 1fr;
+                              }
+
+                              .services-grid {
+                                                grid-template-columns: 1fr;
+                              }
+
+                              .specialties-grid {
+                                                grid-template-columns: 1fr;
+                              }
+
+                              .contact-content {
+                                                grid-template-columns: 1fr;
+                              }
+                }
+            </style>
+  </head>
+  <body>
+        <!-- Navegación -->
+        <nav>
+                  <div class="container">
+                                <a href="#" class="logo">🔐 JS2 Solutions</a>a>
+                                <ul>
+                                                  <li><a href="#inicio">Inicio</a>a></li>
+                                                <li><a href="#acerca">Acerca de</a>a></li>
+                                                <li><a href="#servicios">Servicios</a>a></li>
+                                                <li><a href="#contacto">Contacto</a>a></li>
+                                </ul>
+                  </div>div>
+        </nav>
+  
+      <!-- Hero Section -->
+      <section class="hero" id="inicio">
+              <div class="container">
+                          <h1>Expertos en Ciberseguridad y Networking</h1>
+                          <p>Protegiendo infraestructuras tecnológicas con soluciones Fortinet especializadas</p>
+                          <a href="#contacto" class="btn">Contáctanos Hoy</a>a>
+              </div>div>
+      </section>section>
+  
+      <!-- Sección Acerca de -->
+      <section class="about" id="acerca">
+              <div class="container">
+                          <h2>Acerca de JS2 Solutions</h2>
+                          <div class="content">
+                                          <div class="about-text">
+                                                              <h3>Somos especialistas en seguridad</h3>
+                                                              <p>JS2 Solutions es una empresa especializada en ciberseguridad y networking, con un enfoque principal en soluciones Fortinet. Contamos con amplia experiencia y un sólido conocimiento técnico que nos permite diseñar, implementar y administrar infraestructuras seguras y eficientes.</p>
+                                                              <p>La seguridad no es un producto, es un proceso continuo. Por eso nos dedicamos a proteger y optimizar tu infraestructura tecnológica de forma confiable.</p>
+                                                              <p><strong>Ubicación:</strong> Bogotá, Cundinamarca, Colombia</p>
+                                                              <p><strong>Tamaño:</strong> 2-10 empleados altamente especializados</p>
+                                          </div>div>
+                                          <div class="about-icon">
+                                                              🛡️
+                                          </div>div>
+                          </div>div>
+              </div>div>
+      </section>section>
+  
+      <!-- Sección Servicios -->
+      <section class="services" id="servicios">
+              <div class="container">
+                          <h2>Nuestros Servicios</h2>
+                          <div class="services-grid">
+                                          <div class="service-card">
+                                                              <div class="icon">🔥</div>div>
+                                                              <h3>Implementación de Firewalls</h3>
+                                                              <p>Configuración e implementación de soluciones Fortinet para proteger tu infraestructura de amenazas externas.</p>
+                                          </div>div>
+                                          <div class="service-card">
+                                                              <div class="icon">🌐</div>div>
+                                                              <h3>Redes Seguras</h3>
+                                                              <p>Diseño y construcción de infraestructuras de red segmentadas y resilientes para tu empresa.</p>
+                                          </div>div>
+                                          <div class="service-card">
+                                                              <div class="icon">🔐</div>div>
+                                                              <h3>Soluciones VPN</h3>
+                                                              <p>Implementación de conexiones VPN seguras para acceso remoto y comunicación confidencial.</p>
+                                          </div>div>
+                                          <div class="service-card">
+                                                              <div class="icon">🛠️</div>div>
+                                                              <h3>Hardening de Sistemas</h3>
+                                                              <p>Endurecimiento de configuraciones para minimizar vulnerabilidades y mejorar la postura de seguridad.</p>
+                                          </div>div>
+                                          <div class="service-card">
+                                                              <div class="icon">👁️</div>div>
+                                                              <h3>Monitoreo 24/7</h3>
+                                                              <p>Monitoreo continuo de tu infraestructura para detectar y responder a amenazas en tiempo real.</p>
+                                          </div>div>
+                                          <div class="service-card">
+                                                              <div class="icon">📊</div>div>
+                                                              <h3>Consultoría de TI</h3>
+                                                              <p>Asesoría estratégica para optimizar tu infraestructura y alinearte con mejores prácticas de seguridad.</p>
+                                          </div>div>
+                          </div>div>
+              </div>div>
+      </section>section>
+  
+      <!-- Sección Especialidades -->
+      <section class="specialties">
+              <div class="container">
+                          <h2>Nuestras Especialidades</h2>
+                          <div class="specialties-grid">
+                                          <div class="specialty-item">
+                                                              <span class="badge">Gestión de Proyectos</span>span>
+                                          </div>div>
+                                          <div class="specialty-item">
+                                                              <span class="badge">Ciberseguridad</span>span>
+                                          </div>div>
+                                          <div class="specialty-item">
+                                                              <span class="badge">Consultoría de TI</span>span>
+                                          </div>div>
+                                          <div class="specialty-item">
+                                                              <span class="badge">Interconexión en Red</span>span>
+                                          </div>div>
+                                          <div class="specialty-item">
+                                                              <span class="badge">Redes Domésticas</span>span>
+                                          </div>div>
+                                          <div class="specialty-item">
+                                                              <span class="badge">Telecomunicaciones</span>span>
+                                          </div>div>
+                          </div>div>
+              </div>div>
+      </section>section>
+  
+      <!-- Sección Contacto -->
+      <section class="contact" id="contacto">
+              <div class="container">
+                          <h2>Ponte en Contacto</h2>
+                          <div class="contact-content">
+                                          <div class="contact-item">
+                                                              <div class="icon">📧</div>div>
+                                                              <h3>Email</h3>
+                                                              <p>contacto@js2solutions.com</p>
+                                          </div>div>
+                                          <div class="contact-item">
+                                                              <div class="icon">📱</div>div>
+                                                              <h3>Teléfono</h3>
+                                                              <p>+57 (1) XXXX-XXXX</p>
+                                          </div>div>
+                                          <div class="contact-item">
+                                                              <div class="icon">📍</div>div>
+                                                              <h3>Ubicación</h3>
+                                                              <p>Bogotá, Cundinamarca<br>Colombia</p>
+                                          </div>div>
+                          </div>div>
+                          <div class="contact-form">
+                                          <h3 style="margin-bottom: 1.5rem;">Envíanos un Mensaje</h3>
+                                          <form action="https://formspree.io/f/xjgopkkz" method="POST">
+                                                              <div class="form-group">
+                                                                                      <label for="nombre">Nombre</label>label>
+                                                                                      <input type="text" id="nombre" name="nombre" required>
+                                                              </div>div>
+                                                              <div class="form-group">
+                                                                                      <label for="email">Email</label>label>
+                                                                                      <input type="email" id="email" name="email" required>
+                                                              </div>div>
+                                                              <div class="form-group">
+                                                                                      <label for="asunto">Asunto</label>label>
+                                                                                      <input type="text" id="asunto" name="asunto" required>
+                                                              </div>div>
+                                                              <div class="form-group">
+                                                                                      <label for="mensaje">Mensaje</label>label>
+                                                                                      <textarea id="mensaje" name="mensaje" required></textarea>
+                                                              </div>div>
+                                                              <div class="form-group">
+                                                                                      <button type="submit">Enviar Mensaje</button>button>
+                                                              </div>div>
+                                          </form>form>
+                          </div>div>
+              </div>div>
+      </section>section>
+  
+      <!-- Footer -->
+      <footer>
+                <div class="container">
+                              <p>&copy; 2026 JS2 Solutions. Todos los derechos reservados.</p>p>
+                              <p>Expertos en Ciberseguridad y Networking | Bogotá, Colombia</p>p>
+                              <div class="social-links">
+                                                <a href="https://www.linkedin.com/company/js2-solutions/" title="LinkedIn">in</a>a>
+                                                <a href="mailto:contacto@js2solutions.com" title="Email">✉</a>a>
+                              </div>div>
+                </div>div>
+      </footer>
+  </body>
+</html>html>
+      </footer></p></p></strong></strong></p></p></h1></li></li>
+                                </ul>
+        </nav>
+  </body>
+      </style></title>
+  </head>
